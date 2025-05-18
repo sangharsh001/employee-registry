@@ -1,5 +1,5 @@
-# Use an official Maven image with JDK 21 installed
-FROM maven:3.8.7-openjdk-21
+FROM maven:3.8.7-openjdk-17
+
 
 # Set the working directory inside the container
 WORKDIR /app
