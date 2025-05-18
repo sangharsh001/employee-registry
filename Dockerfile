@@ -1,17 +1,14 @@
-FROM maven:3.8.7-openjdk-17
-
+# Use an official OpenJDK runtime as a parent image
+FROM eclipse-temurin:17-jdk-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy all files from your project into the container
-COPY . .
+# Copy the jar file from the target directory to the container
+COPY target/employee-registry-0.0.1-SNAPSHOT.jar app.jar
 
-# Build the project using Maven
-RUN mvn clean package
-
-# Expose the port your app runs on (usually 8080)
+# Expose the port your Spring Boot app runs on (default 8080)
 EXPOSE 8080
 
-# Run the application with the generated JAR file
-CMD ["java", "-jar", "target/employee-registry.jar"]
+# Run the jar file
+ENTRYPOINT ["java", "-jar", "app.jar"]
